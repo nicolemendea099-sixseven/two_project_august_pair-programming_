@@ -1,0 +1,41 @@
+{
+    "data_pedido": "2026-08-11 13:22:12",
+    "total_pedido": 120.80000000000001,
+    "itens": [
+        {
+            "item": "Gorgonzola & Cebola",
+            "categoria": "🥩 Carne",
+            "quantidade": 1,
+            "preco_unitario": 36.9,
+            "subtotal": 36.9
+        },
+        {
+            "item": "Chicken Honey Mustard",
+            "categoria": "🍗 Frango",
+            "quantidade": 1,
+            "preco_unitario": 27.5,
+            "subtotal": 27.5
+        },
+        {
+            "item": "Lentilha & Quinoa",
+            "categoria": "🌱 Vegetariano",
+            "quantidade": 1,
+            "preco_unitario": 27.9,
+            "subtotal": 27.9
+        },
+        {
+            "item": "Batata com Cheddar e Bacon",
+            "categoria": "🍟 Acompanhamento",
+            "quantidade": 1,
+            "preco_unitario": 22.0,
+            "subtotal": 22.0
+        },
+        {
+            "item": "Coca-Cola Zero 350ml",
+            "categoria": "🥤 Bebidas",
+            "quantidade": 1,
+            "preco_unitario": 6.5,
+            "subtotal": 6.5
+        }
+    ]
+}
