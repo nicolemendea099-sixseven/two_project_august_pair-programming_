@@ -1,0 +1,41 @@
+{
+    "data_pedido": "2026-08-10 22:47:01",
+    "total_pedido": 122.1,
+    "itens": [
+        {
+            "item": "Classic Burger",
+            "categoria": "🥩 Carne",
+            "quantidade": 1,
+            "preco_unitario": 28.9,
+            "subtotal": 28.9
+        },
+        {
+            "item": "Spicy Chicken",
+            "categoria": "🍗 Frango",
+            "quantidade": 1,
+            "preco_unitario": 27.9,
+            "subtotal": 27.9
+        },
+        {
+            "item": "Falafel Burguer",
+            "categoria": "🌱 Vegetariano",
+            "quantidade": 1,
+            "preco_unitario": 28.9,
+            "subtotal": 28.9
+        },
+        {
+            "item": "Nuggets de Frango (8 un)",
+            "categoria": "🍟 Acompanhamento",
+            "quantidade": 1,
+            "preco_unitario": 17.5,
+            "subtotal": 17.5
+        },
+        {
+            "item": "Milkshake de Ovomaltine",
+            "categoria": "🥤 Bebidas",
+            "quantidade": 1,
+            "preco_unitario": 18.9,
+            "subtotal": 18.9
+        }
+    ]
+}
