@@ -1,0 +1,27 @@
+{
+    "data_pedido": "2026-08-10 23:03:57",
+    "total_pedido": 103.6,
+    "itens": [
+        {
+            "item": "Costela Supremo",
+            "categoria": "🥩 Carne",
+            "quantidade": 1,
+            "preco_unitario": 38.9,
+            "subtotal": 38.9
+        },
+        {
+            "item": "Smash Chicken",
+            "categoria": "🍗 Frango",
+            "quantidade": 1,
+            "preco_unitario": 24.9,
+            "subtotal": 24.9
+        },
+        {
+            "item": "Milkshake Ninho e Nutella",
+            "categoria": "🥤 Bebidas",
+            "quantidade": 2,
+            "preco_unitario": 19.9,
+            "subtotal": 39.8
+        }
+    ]
+}

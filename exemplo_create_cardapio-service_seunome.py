@@ -5,7 +5,6 @@ import tkinter as tk
 from datetime import datetime
 from tkinter import filedialog, messagebox, ttk
 
-# ==================== PALETAS DE CORES ====================
 PALETA_CLARA = {
     "fundo": "#f8f9fa",
     "painel": "#ffffff",
@@ -33,7 +32,6 @@ PALETA_ESCURA = {
 cores = PALETA_CLARA
 modo_escuro = False
 
-# ==================== DADOS DO CARDÁPIO (7 ITENS / CATEGORIA) ====================
 CARDAPIO = {
     "🥩 Carne": [
         {
@@ -262,7 +260,6 @@ cards_widgets = []
 canvases = []
 
 
-# ==================== LÓGICA DO PEDIDO ====================
 def calcular_total():
     total = 0.0
     for categoria, itens in CARDAPIO.items():
@@ -312,13 +309,13 @@ def finalizar_pedido_json():
     }
 
     # Nome padronizado do arquivo com data e hora
-    nome_arquivo = f"pedido_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+    nome_arquivo = f"ticket_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
 
-    # =========================================================
     # 1. GUARDA AUTOMATICAMENTE DENTRO DA PASTA DO REPOSITÓRIO (VS CODE)
-    # =========================================================
-    pasta_repositorio = os.path.join(os.getcwd(), "pedidos")
-    os.makedirs(pasta_repositorio, exist_ok=True)  # Cria a pasta 'pedidos' no repositório se não existir
+    # pasta_repositorio = os.path.join(os.getcwd(), "pedidos")
+    pasta_repositorio = os.path.join(os.getcwd(), "ticket")
+
+    os.makedirs(pasta_repositorio, exist_ok=True)  # Cria a pasta 'ticket' no repositório se não existir
 
     caminho_local_repo = os.path.join(pasta_repositorio, nome_arquivo)
 
@@ -329,9 +326,7 @@ def finalizar_pedido_json():
         messagebox.showerror("Erro", f"Falha ao salvar no repositório local: {e_repo}")
         return
 
-    # =========================================================
     # 2. OPTATIVO: PERMITE SALVAR UMA CÓPIA EM OUTRO LUGAR DO PC
-    # =========================================================
     caminho_copia_extra = filedialog.asksaveasfilename(
         defaultextension=".json",
         filetypes=[("Arquivos JSON", "*.json")],
@@ -346,19 +341,17 @@ def finalizar_pedido_json():
         except Exception as e_copia:
             print(f"Não foi possível salvar a cópia extra: {e_copia}")
 
-    # =========================================================
     # 3. ABRE O ARQUIVO DO REPOSITÓRIO DIRETO NO VS CODE
-    # =========================================================
     try:
         subprocess.run(["code", caminho_local_repo], shell=True)
         messagebox.showinfo(
             "Sucesso",
-            f"Pedido armazenado no repositório em:\n'pedidos/{nome_arquivo}'\ne aberto no VS Code!",
+            f"Pedido armazenado no repositório em:\n'ticket/{nome_arquivo}'\ne aberto no VS Code!",
         )
     except Exception as ex_vscode:
         messagebox.showinfo(
             "Sucesso",
-            f"Pedido salvo no repositório em:\n'pedidos/{nome_arquivo}'",
+            f"Pedido salvo no repositório em:\n'ticket/{nome_arquivo}'",
         )
 
     zerar_quantidades()
