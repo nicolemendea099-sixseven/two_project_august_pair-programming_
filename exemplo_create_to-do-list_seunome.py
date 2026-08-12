@@ -1,5 +1,6 @@
 import json
 import os
+import subprocess
 import tkinter as tk
 from datetime import datetime
 from tkinter import filedialog, messagebox, ttk
@@ -101,17 +102,26 @@ def excluir_tarefa():
 
 
 def exportar_json():
-    """Exporta a lista atual de tarefas para um arquivo JSON escolhido pelo usuário"""
+    """Exporta a lista atual de tarefas para um arquivo JSON dentro da pasta 'ticket'"""
     if not tarefas:
         messagebox.showwarning("Aviso", "Não há tarefas para exportar!")
         return
 
-    # Janela para escolher onde salvar o arquivo
+    # 1. Caminho da pasta 'ticket' dentro do projeto
+    pasta_ticket = os.path.join(os.getcwd(), "ticket")
+    os.makedirs(pasta_ticket, exist_ok=True)  # Garante que a pasta 'ticket' existe
+
+    # 2. Nome padronizado do arquivo (ex: tarefa_20260811_221000.json)
+    nome_padrao = f"tarefa_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+    caminho_padrao = os.path.join(pasta_ticket, nome_padrao)
+
+    # 3. Caixa de diálogo já apontando para a pasta 'ticket'
     caminho_arquivo = filedialog.asksaveasfilename(
+        initialdir=pasta_ticket,
+        initialfile=nome_padrao,
         defaultextension=".json",
         filetypes=[("Arquivos JSON", "*.json"), ("Todos os Arquivos", "*.*")],
-        initialfile=f"exportacao_tarefas_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
-        title="Salvar Exportação JSON",
+        title="Salvar Tarefa JSON",
     )
 
     if caminho_arquivo:
@@ -128,8 +138,16 @@ def exportar_json():
                 json.dump(dados_exportacao, f, indent=4, ensure_ascii=False)
 
             messagebox.showinfo(
-                "Sucesso", f"Tarefas exportadas com sucesso!\n\n{caminho_arquivo}"
+                "Sucesso",
+                f"Tarefa exportada com sucesso na pasta 'ticket'!\n\nCaminho: {caminho_arquivo}",
             )
+
+            # Tenta abrir o arquivo criado direto no VS Code
+            try:
+                subprocess.run(["code", caminho_arquivo], shell=True)
+            except Exception:
+                pass
+
         except Exception as e:
             messagebox.showerror(
                 "Erro ao Exportar", f"Falha ao gerar arquivo JSON: {e}"

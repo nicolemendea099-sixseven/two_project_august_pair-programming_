@@ -1,10 +1,12 @@
 import io
 import json
+import os
+import subprocess
 import tkinter as tk
 from datetime import datetime
-from tkinter import messagebox, ttk
+from tkinter import filedialog, messagebox, ttk
+from PIL import Image, ImageOps, ImageTk
 import requests
-from PIL import Image, ImageTk, ImageOps
 
 # ==================== PALETAS DE CORES (TEMAS) ====================
 PALETA_CLARA = {
@@ -51,8 +53,7 @@ usuario_atual = None
 
 # ==================== TRATAMENTO DE IMAGEM DA LOGO ====================
 def remover_fundo_azul(img):
-    """
-    Remove o quadrado azul de fundo da imagem original,
+    """Remove o quadrado azul de fundo da imagem original,
     tornando o fundo totalmente transparente para se adaptar a qualquer tema.
     """
     img = img.convert("RGBA")
@@ -62,7 +63,6 @@ def remover_fundo_azul(img):
     for item in datas:
         r, g, b, a = item
         # Detecta tons do azul do fundo original (#004d6e ou similares)
-        # RGB aprox do azul: R < 50, G entre 50 e 120, B entre 90 e 150
         if r < 60 and 40 < g < 130 and 80 < b < 160:
             new_data.append((0, 0, 0, 0))  # Totalmente transparente
         else:
@@ -79,14 +79,10 @@ def atualizar_imagem_logo():
         return
 
     try:
-        # Pega a imagem sem o fundo azul prévio
         img_sem_fundo = remover_fundo_azul(img_logo_raw)
 
-        # Ajusta a cor do símbolo se estiver no modo escuro para dar contraste
         if modo_escuro:
-            # Torna o arco/símbolo mais claro/brilhante no modo escuro
             r, g, b, a = img_sem_fundo.split()
-            # Inverte/Clareia apenas onde há pixels visíveis
             rgb_img = Image.merge("RGB", (r, g, b))
             rgb_img = ImageOps.colorize(
                 rgb_img.convert("L"), black="#1e1e2e", white="#60a5fa"
@@ -242,16 +238,54 @@ def exportar_json():
         "saldo_atual": dados_usuario["saldo"],
         "historico_transacoes": dados_usuario["extrato"],
     }
-    nome_arquivo = f"extrato_{usuario_atual}.json"
+
+    # Gera o nome dinâmico com timestamp
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    nome_arquivo = f"ticket_extrato_{usuario_atual}_{timestamp}.json"
+
+    # 1. GUARDA AUTOMATICAMENTE NA PASTA 'ticket' DO PROJETO (VS CODE)
+    pasta_ticket = os.path.join(os.getcwd(), "ticket")
+    os.makedirs(pasta_ticket, exist_ok=True)
+
+    caminho_local_repo = os.path.join(pasta_ticket, nome_arquivo)
+
     try:
-        with open(nome_arquivo, "w", encoding="utf-8") as f:
+        with open(caminho_local_repo, "w", encoding="utf-8") as f:
             json.dump(dados_exportacao, f, indent=4, ensure_ascii=False)
-        messagebox.showinfo(
-            "JSON Gerado",
-            f"Extrato exportado com sucesso!\nArquivo: {nome_arquivo}",
+    except Exception as e_repo:
+        messagebox.showerror(
+            "Erro", f"Falha ao salvar na pasta ticket do projeto: {e_repo}"
         )
-    except Exception as e:
-        messagebox.showerror("Erro ao Exportar", f"Falha ao gerar JSON: {e}")
+        return
+
+    # 2. OPTATIVO: SALVAR CÓPIA EM OUTRO LOCAL DO COMPUTADOR
+    caminho_copia_extra = filedialog.asksaveasfilename(
+        initialdir=pasta_ticket,
+        initialfile=nome_arquivo,
+        defaultextension=".json",
+        filetypes=[("Arquivos JSON", "*.json"), ("Todos os Arquivos", "*.*")],
+        title="Salvar uma cópia do Extrato JSON (Opcional)",
+    )
+
+    if caminho_copia_extra:
+        try:
+            with open(caminho_copia_extra, "w", encoding="utf-8") as f_extra:
+                json.dump(dados_exportacao, f_extra, indent=4, ensure_ascii=False)
+        except Exception as e_copia:
+            print(f"Não foi possível salvar a cópia extra: {e_copia}")
+
+    # 3. ABRE O ARQUIVO SALVO NA PASTA 'ticket' DIRETO NO VS CODE
+    try:
+        subprocess.run(["code", caminho_local_repo], shell=True)
+        messagebox.showinfo(
+            "Sucesso",
+            f"Extrato gerado com sucesso!\n\nLocal: ticket/{nome_arquivo}\n\nArquivo aberto no VS Code!",
+        )
+    except Exception:
+        messagebox.showinfo(
+            "Sucesso",
+            f"Extrato gerado com sucesso!\n\nLocal: ticket/{nome_arquivo}",
+        )
 
 
 def logout():

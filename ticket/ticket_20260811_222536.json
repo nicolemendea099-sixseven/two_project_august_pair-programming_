@@ -1,0 +1,41 @@
+{
+    "data_pedido": "2026-08-11 22:25:36",
+    "total_pedido": 127.69999999999999,
+    "itens": [
+        {
+            "item": "Costela Supremo",
+            "categoria": "🥩 Carne",
+            "quantidade": 1,
+            "preco_unitario": 38.9,
+            "subtotal": 38.9
+        },
+        {
+            "item": "Smash Chicken",
+            "categoria": "🍗 Frango",
+            "quantidade": 1,
+            "preco_unitario": 24.9,
+            "subtotal": 24.9
+        },
+        {
+            "item": "Futuro Bacon",
+            "categoria": "🌱 Vegetariano",
+            "quantidade": 1,
+            "preco_unitario": 34.9,
+            "subtotal": 34.9
+        },
+        {
+            "item": "Batata Rústica",
+            "categoria": "🍟 Acompanhamento",
+            "quantidade": 1,
+            "preco_unitario": 16.0,
+            "subtotal": 16.0
+        },
+        {
+            "item": "Guaraná Antarctica 350ml",
+            "categoria": "🥤 Bebidas",
+            "quantidade": 2,
+            "preco_unitario": 6.5,
+            "subtotal": 13.0
+        }
+    ]
+}
