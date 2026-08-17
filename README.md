@@ -1,98 +1,188 @@
-# 🐍 Projetos Educacionais em Python - Finanças e História
+# two_project_august_pair-programming
+👥 Cadastro de Clientes
 
-Este repositório contém uma coleção de aplicações gráficas desenvolvidas em **Python** utilizando **Tkinter**. Os projetos foram elaborados com foco didático para alunos do programa **Jovem Aprendiz**, integrando conceitos de **programação procedural**, **educação financeira** e **história do Brasil**.
+O sistema permite registrar informações dos clientes, como:
 
----
+Nome
+Telefone
+Quantidade de pedidos
+Total gasto
 
-## 🎯 Objetivos Didáticos
+Também é possível consultar os clientes cadastrados através da interface.
 
-* **Lógica Procedural:** Estruturação de código sem o uso de Orientação a Objetos (POO), facilitando a assimilação inicial de funções, parâmetros e escopo global (`global`).
-* **Interface Gráfica (GUI):** Construção de telas interativas com `tkinter` e componentes modernos (`ttk.Notebook`, `Listbox`, `Frame`, etc.).
-* **Tratamento de Exceções:** Uso de blocos `try/except` para validação de entradas numéricas do usuário.
-* **Consumo de Requisições HTTP:** Integração com a web (`requests`) e manipulação de imagens (`Pillow`).
+Os dados são armazenados em:
 
----
+dados/clientes.json
+💳 Formas de Pagamento
 
-## 🚀 Projetos Incluídos
+O sistema possui as seguintes formas de pagamento:
 
-### 1. 📜 Linha do Tempo: Eufrásia Teixeira Leite (`historia_financas_with_eufrasia_seunome.py`)
-Uma interface interativa sobre **Eufrásia Teixeira Leite** (1850–1930), a primeira investidora global do Brasil.
-* **Destaques:** 
-  * Download e exibição de imagem via requisição HTTP (`requests` e `Pillow`).
-  * Tratamento de falhas de conexão para manter a aplicação funcional mesmo offline.
-  * Botões interativos para exibição de fatos históricos.
+💵 Dinheiro
+💳 Débito
+💳 Crédito
+📱 Pix
 
----
+No pagamento em dinheiro, o sistema calcula automaticamente o troco.
 
-### 2. 💵 Simulador de Aportes (`financas_aportes_bankb3_seunome.py`)
-Uma calculadora de fluxo de caixa simplificada para ensinar operações de depósito e saque.
-* **Destaques:**
-  * Controle de saldo em tempo real.
-  * Validação para impedir saques maiores do que o saldo disponível.
-  * Atualização dinâmica dos rótulos e campos de texto.
+Caso o valor recebido seja menor que o valor da compra, o pagamento não pode ser confirmado.
 
----
+🧾 Recibos
 
-### 3. 📊 Dashboard Financeiro - Padrão B3 (`financas_dashboard_bankb3_seunome.py`)
-Um painel completo simulando o ambiente da Bolsa de Valores brasileira (B3).
-* **Destaques:**
-  * Uso de abas interativas (`ttk.Notebook`) para navegar entre **Conta Corrente**, **Criptoativos** e **Extrato**.
-  * Simulação de compra de frações de Bitcoin (BTC).
-  * Histórico de transações em tempo real utilizando `tk.Listbox`.
+Depois da finalização de uma venda, o sistema gera um recibo com informações como:
 
----
+Nome da padaria
+Data e horário
+Cliente
+Produtos
+Quantidades
+Valores
+Total da compra
+Forma de pagamento
+Valor recebido
+Troco
 
-## 🛠️ Pré-requisitos e Instalação
+O recibo pode ser visualizado na aplicação e também salvo em formato .txt.
 
-Para executar os projetos, você precisará do **Python 3.10+** instalado em sua máquina.
+📊 Relatório de Vendas
 
-### 1. Instalar as dependências do projeto
-Abra o terminal ou prompt de comando e execute:
+O sistema mantém informações sobre as vendas realizadas.
 
-```bash
-pip install requests pillow
+O relatório apresenta:
 
-```
-```bash
-python -m pip install requests pillow
+Quantidade de pedidos.
+Quantidade de produtos vendidos.
+Faturamento.
+Produto mais vendido.
 
-```
+As informações são armazenadas em:
 
+dados/relatorio.json
+🔎 Pesquisa de Produtos
 
-> **Nota:** O `tkinter` já vem instalado por padrão na maioria das instalações do Python para Windows/macOS. Caso esteja utilizando Linux (Ubuntu/Debian), instale-o via terminal:
-> `sudo apt-get install python3-tkinter`
+O sistema possui uma área de pesquisa para facilitar a localização dos produtos no cardápio.
 
----
+A pesquisa permite encontrar produtos pelo nome.
 
-## 💻 Como Executar as Aplicações
+🌙 Modo Claro e Escuro
 
-Navegue até a pasta do projeto no seu terminal e rode o arquivo desejado:
+A interface possui dois temas:
 
-```bash
-# Executar a Linha do Tempo de Eufrásia
-python historia_financas_with_eufrasia_seunome.py
+☀️ Modo Claro
+🌙 Modo Escuro
 
-# Executar o Simulador de Aportes
-python financas_aportes_bankb3_seunome.py
+O usuário pode alternar entre os temas através do botão disponível na interface.
 
-# Executar o Dashboard B3
-python financas_dashboard_bankb3_seunome.py
+🖥️ Interface Gráfica
 
-```
+A interface foi desenvolvida utilizando:
 
----
+tkinter
+ttk
 
-## 🗂️ Estrutura do Repositório
+O sistema possui:
 
-```text
-.
-├── historia_financas_with_eufrasia_seunome.py    # Aplicação sobre Eufrásia Teixeira Leite
-├── financas_aportes_bankb3_seunome.py    # Simulador simples de depósitos e saques
-├── financas_dashboard_bankb3_seunome.py         # Dashboard financeiro com abas (B3)
-└── README.md               # Documentação do projeto
+Abas para as categorias.
+Cartões de produtos.
+Botões de ação.
+Campos de entrada.
+Seletores de quantidade.
+Tela de pagamento.
+Tela de recibo.
+Tela de clientes.
+Tela de relatório.
+Modo claro e escuro.
+🛠️ Tecnologias Utilizadas
+🐍 Python
+🖼️ Tkinter
+🎨 ttk
+📄 JSON
+📁 OS
+🕐 Datetime
 
-```
+O projeto utiliza apenas recursos da biblioteca padrão do Python, não sendo necessário instalar bibliotecas externas.
 
----
+📋 Pré-requisitos
 
-💙 *Projeto desenvolvido para fins educacionais e de capacitação profissional.*
+Para executar o sistema, é necessário ter:
+
+Python 3 instalado.
+Tkinter disponível na instalação do Python.
+Windows, Linux ou macOS.
+▶️ Como Executar
+
+Primeiro, renomeie o arquivo do código para:
+
+padaria_artes.py
+
+Depois, abra o terminal dentro da pasta do projeto e execute:
+
+python padaria_artes.py
+
+A interface da Padaria Artes será aberta automaticamente.
+
+📁 Estrutura do Projeto
+
+A estrutura do projeto pode ficar assim:
+
+Padaria-Artes/
+│
+├── padaria_artes.py
+│
+├── dados/
+│   ├── estoque.json
+│   ├── clientes.json
+│   └── relatorio.json
+│
+├── ticket/
+│   ├── pedido_YYYYMMDD_HHMMSS.json
+│   └── pedido_YYYYMMDD_HHMMSS_recibo.txt
+│
+└── README.md
+
+A pasta dados armazena as informações de estoque, clientes e relatórios.
+
+A pasta ticket armazena os pedidos e recibos gerados pelo sistema.
+
+💰 Funcionamento de uma Venda
+
+O processo de venda funciona da seguinte forma:
+
+Selecionar os produtos.
+Escolher as quantidades.
+Conferir o total da compra.
+Iniciar o processo de pagamento.
+Informar os dados do cliente.
+Escolher a forma de pagamento.
+Confirmar o pagamento.
+Atualizar o estoque.
+Registrar a venda.
+Gerar o pedido em JSON.
+Gerar o recibo em TXT.
+📄 Arquivos Gerados
+estoque.json
+
+Armazena as quantidades disponíveis dos produtos.
+
+clientes.json
+
+Armazena os dados dos clientes e suas informações de compras.
+
+relatorio.json
+
+Armazena os dados das vendas realizadas.
+
+Arquivos .json dos pedidos
+
+Cada pedido pode ser armazenado individualmente com suas informações.
+
+Arquivos .txt
+
+Contêm os recibos das compras realizadas.
+
+📌 Informações do Projeto
+
+Nome: Padaria Artes
+Linguagem: Python
+Interface gráfica: Tkinter
+Tipo: Sistema de vendas
+Arquivo principal: padaria_artes.py
